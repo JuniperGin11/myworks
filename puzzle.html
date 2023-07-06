@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>puzzle</title>
+    <style>
+        #maze {
+            width: 500px;
+            height: 706px;
+            background-image: url('maze.jpeg');
+            background-size: cover;
+            border: 1px solid #999;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #player {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-image: url('法斗.jpg');
+            background-size: cover;
+            top: 130px;
+            left: 130px;
+        }
+    </style>
+</head>
+<body>
+    <div id="maze">
+        <div id="player"></div>
+    </div>
+
+    <script>
+        var player = {
+            x: 130,
+            y: 130
+        };
+
+        var obstacles = [
+            { x: 160, y: 360, width: 175, height: 75 },
+            // 添加更多的障碍物...
+        ];
+
+        function movePlayer(direction) {
+            var playerElement = document.getElementById('player');
+
+            var targetX = player.x;
+            var targetY = player.y;
+
+            if (direction === 'up') {
+                targetY -= 10;
+            } else if (direction === 'down') {
+                targetY += 10;
+            } else if (direction === 'left') {
+                targetX -= 10;
+            } else if (direction === 'right') {
+                targetX += 10;
+            }
+
+            var isObstacle = obstacles.some(function(obstacle) {
+                return (
+                    targetX >= obstacle.x &&
+                    targetX <= obstacle.x + obstacle.width &&
+                    targetY >= obstacle.y &&
+                    targetY <= obstacle.y + obstacle.height
+                );
+            });
+
+            if (!isObstacle) {
+                player.x = targetX;
+                player.y = targetY;
+
+                playerElement.style.left = player.x + 'px';
+                playerElement.style.top = player.y + 'px';
+
+                if (player.x >= 300 && player.x <= 480 && player.y >= 580 && player.y <= 680) {
+                    alert('恭喜你成功移动到指定位置！');
+                }
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowUp') {
+                movePlayer('up');
+            } else if (event.key === 'ArrowDown') {
+                movePlayer('down');
+            } else if (event.key === 'ArrowLeft') {
+                movePlayer('left');
+            } else if (event.key === 'ArrowRight') {
+                movePlayer('right');
+            }
+        });
+    </script>
+</body>
+</html>
+

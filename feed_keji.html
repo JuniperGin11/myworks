@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* CSS样式 */
+        #dog-image {
+            width: 200px;
+            height: 200px;
+            margin:0 auto;
+            display: block;
+        }
+
+        #treats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .treat {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>feed</h1>
+    <img id="dog-image" src="柯基.jpg"> <!-- 替换为当前交互的小狗图片路径 -->
+    <div id="treats">
+        <img class="treat" src="汉堡.jpg"> <!-- 替换为零食1的图片路径 -->
+        <img class="treat" src="热狗.jpg"> <!-- 替换为零食2的图片路径 -->
+        <!-- 添加更多的零食图片 -->
+    </div>
+
+    <script>
+        // JavaScript代码
+        var dogImage = document.getElementById("dog-image");
+        var treats = document.getElementsByClassName("treat");
+        var treatCounter = 0;
+
+        // 给每个零食图片添加点击事件
+        for (var i = 0; i < treats.length; i++) {
+            treats[i].addEventListener("click", feedTreat);
+        }
+
+        // 投喂零食事件处理函数
+        function feedTreat() {
+            var treatSrc = this.getAttribute("src");
+            // 在这里可以实现投喂零食给小狗的逻辑
+            // 根据零食的不同，更新小狗的好感度或其他相关信息
+            // 可以修改小狗图片，显示不同的表情等
+            if (treatSrc === "汉堡.jpg" || treatSrc === "热狗.jpg") {
+                var originalSrc = dogImage.src; // Save the original Corgi image source
+                dogImage.src = "爱心.jpg"; // Replace with the path to the heart image
+                setTimeout(function() {
+                    dogImage.src = originalSrc; // Revert back to the original Corgi image
+                }, 1000); // 3-second delay (3000 milliseconds)
+            } else {
+                dogImage.src = treatSrc;
+            }
+        }
+
+    </script>
+</body>
+</html>
