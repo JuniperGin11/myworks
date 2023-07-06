@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* CSS样式 */
+        #map {
+            position: relative;
+            width: 1440px;
+            height: 1024px;
+            background-image: url("map.png"); /* 替换为你的地图图片路径 */
+            background-size: cover;
+            cursor: pointer;
+        }
+
+        .dog {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            background-color: transparent; /* 设置背景颜色为透明 */
+            background-size: contain; /* 调整背景图像尺寸 */
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        /* CSS样式用于美化游戏界面 */
+        .keji {
+            background-image: url(柯基.jpg); /* Labrador品种的贴图图像 */
+        }
+        .fadou {
+            background-image: url(法斗.jpg); /* Poodle品种的贴图图像 */
+        }
+        .taidi {
+            background-image: url(泰迪.jpg); /* Labrador品种的贴图图像 */
+        }
+        .xue {
+            background-image: url(雪纳瑞.jpg); /* Poodle品种的贴图图像 */
+        }
+        .bianmu {
+            background-image: url(边牧.jpg); /* Labrador品种的贴图图像 */
+        }
+        .bige {
+            background-image: url(比格.jpg); /* Poodle品种的贴图图像 */
+        }
+        .ha {
+            background-image: url(哈士奇.jpg); /* Labrador品种的贴图图像 */
+        }
+        .lachang {
+            background-image: url(腊肠犬.jpg); /* Poodle品种的贴图图像 */
+        }
+    /* 更多样式... */
+    </style>
+</head>
+<body>
+    <div id="map">
+        <!-- 小狗的HTML元素将通过JavaScript动态添加到这里 -->
+    </div>
+    
+
+    <script>
+        // JavaScript代码
+        var dogs = document.getElementsByClassName("dog");
+
+        // 给每个狗狗元素添加点击事件
+        for (var i = 0; i < dogs.length; i++) {
+            dogs[i].addEventListener("click", goToTrainingPage);
+        }
+
+        // 创建地图上的小狗
+        function createDog(x, y, breed) {
+            const dogElement = document.createElement('div');
+            dogElement.className = 'dog ' + breed;
+            dogElement.style.left = x + 'px';
+            dogElement.style.top = y + 'px';
+            dogElement.addEventListener('click', () => {
+                goToTrainingPage(breed); // Call the goToTrainingPage function with the breed as a parameter
+            });
+            document.getElementById('map').appendChild(dogElement);
+        }
+
+        // 初始化游戏地图和小狗
+        function initializeMap() {
+            createDog(100, 100, 'keji');
+            createDog(250, 300, 'fadou');
+            createDog(300, 600, 'taidi');
+            createDog(950, 450, 'xue');
+            createDog(1300, 600, 'bianmu');
+            createDog(600, 400, 'bige');
+            createDog(400, 900, 'ha');
+            createDog(950, 700, 'lachang');
+            // 更多小狗的初始化...
+        }
+
+        // 游戏开始
+        initializeMap();
+        
+        // 跳转到驯化页面
+        function goToTrainingPage(breed) {
+            if (breed === "keji") {
+                window.location.href = "feed_keji.html"; // 替换为柯基狗狗驯化页面的路径
+            } else if (breed === "fadou") {
+                window.location.href = "puzzle.html"; // 替换为puzzle页面的路径
+            }
+            // 添加更多狗狗品种的跳转逻辑...
+        }
+    </script>
+</body>
+</html>
+
+
+
