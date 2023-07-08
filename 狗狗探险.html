@@ -2,12 +2,11 @@
 <html>
 <head>
     <style>
-        /* CSS样式 */
         #map {
             position: relative;
             width: 1440px;
             height: 1024px;
-            background-image: url("map.png"); /* 替换为你的地图图片路径 */
+            background-image: url("map.png"); 
             background-size: cover;
             cursor: pointer;
         }
@@ -22,48 +21,44 @@
             cursor: pointer;
         }
         
-        /* CSS样式用于美化游戏界面 */
         .keji {
-            background-image: url(柯基.jpg); /* Labrador品种的贴图图像 */
+            background-image: url(柯基.jpg); /* 柯基品种的贴图图像 */
         }
         .fadou {
-            background-image: url(法斗.jpg); /* Poodle品种的贴图图像 */
+            background-image: url(法斗.jpg); 
         }
         .taidi {
-            background-image: url(泰迪.jpg); /* Labrador品种的贴图图像 */
+            background-image: url(泰迪.jpg); 
         }
         .xue {
-            background-image: url(雪纳瑞.jpg); /* Poodle品种的贴图图像 */
+            background-image: url(雪纳瑞.jpg); 
         }
         .bianmu {
-            background-image: url(边牧.jpg); /* Labrador品种的贴图图像 */
+            background-image: url(边牧.jpg); 
         }
         .bige {
-            background-image: url(比格.jpg); /* Poodle品种的贴图图像 */
+            background-image: url(比格.jpg); 
         }
         .ha {
-            background-image: url(哈士奇.jpg); /* Labrador品种的贴图图像 */
+            background-image: url(哈士奇.jpg); 
         }
         .lachang {
-            background-image: url(腊肠犬.jpg); /* Poodle品种的贴图图像 */
+            background-image: url(腊肠犬.jpg); 
         }
-    /* 更多样式... */
+        .treasure {
+            background-image: url(宝箱.jpg); 
+        }
+
     </style>
 </head>
 <body>
-    <div id="map">
-        <!-- 小狗的HTML元素将通过JavaScript动态添加到这里 -->
-    </div>
+    <div id="map"></div>
     
-
     <script>
-        // JavaScript代码
+
         var dogs = document.getElementsByClassName("dog");
 
-        // 给每个狗狗元素添加点击事件
-        for (var i = 0; i < dogs.length; i++) {
-            dogs[i].addEventListener("click", goToTrainingPage);
-        }
+        var dogs = document.getElementsByClassName("dog");
 
         // 创建地图上的小狗
         function createDog(x, y, breed) {
@@ -72,7 +67,11 @@
             dogElement.style.left = x + 'px';
             dogElement.style.top = y + 'px';
             dogElement.addEventListener('click', () => {
-                goToTrainingPage(breed); // Call the goToTrainingPage function with the breed as a parameter
+                if (breed === "treasure") {
+                    showPopup('恭喜你找到宝藏'); 
+                } else {
+                    goToTrainingPage(breed);
+                }
             });
             document.getElementById('map').appendChild(dogElement);
         }
@@ -87,7 +86,7 @@
             createDog(600, 400, 'bige');
             createDog(400, 900, 'ha');
             createDog(950, 700, 'lachang');
-            // 更多小狗的初始化...
+            createDog(700, 800, 'treasure');
         }
 
         // 游戏开始
@@ -95,16 +94,18 @@
         
         // 跳转到驯化页面
         function goToTrainingPage(breed) {
-            if (breed === "keji") {
+        if (breed === "keji") {
                 window.location.href = "feed_keji.html"; // 替换为柯基狗狗驯化页面的路径
             } else if (breed === "fadou") {
                 window.location.href = "puzzle.html"; // 替换为puzzle页面的路径
             }
             // 添加更多狗狗品种的跳转逻辑...
         }
+        
+        function showPopup(message, hotdogImagePath) {
+            alert(message); // 使用 alert() 函数显示弹窗提示
+        }
+
     </script>
 </body>
 </html>
-
-
-
