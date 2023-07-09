@@ -62,9 +62,9 @@
 
         // 创建地图上的小狗
         function createDog(x, y, breed) {
-            const dogElement = document.createElement('div');
+            const dogElement = document.createElement('div');//函数的主要功能是创建一个表示狗的<div>元素，并将其添加到具有id为"map"的父元素中。创建的<div>元素具有类名"dog"和品种类名。
             dogElement.className = 'dog ' + breed;
-            dogElement.style.left = x + 'px';
+            dogElement.style.left = x + 'px';//通过设置style属性，将狗元素的位置（左边距和上边距）设置为提供的x和y坐标。
             dogElement.style.top = y + 'px';
             dogElement.addEventListener('click', () => {
                 if (breed === "treasure") {
@@ -75,6 +75,7 @@
             });
             document.getElementById('map').appendChild(dogElement);
         }
+        //为狗元素添加了一个点击事件监听器。当点击狗元素时，将执行一个回调函数。
 
         // 初始化游戏地图和小狗
         function initializeMap() {
@@ -102,10 +103,15 @@
             // 添加更多狗狗品种的跳转逻辑...
         }
         
-        function showPopup(message, hotdogImagePath) {
+        function showPopup(message) {
             alert(message); // 使用 alert() 函数显示弹窗提示
         }
+        //showPopup 函数用于显示一个使用 alert() 函数创建的弹窗提示框，并将传递给函数的消息作为弹窗的文本内容
 
     </script>
 </body>
 </html>
+
+
+
+
